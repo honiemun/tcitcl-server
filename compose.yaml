@@ -1,0 +1,42 @@
+services:
+  tcitcl_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tcitcl_api
+    environment:
+      - NODE_ENV=production
+      - POSTGRES_HOST=tcitcl_postgres
+      - POSTGRES_PORT=5432
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3003}:3003"
+    networks:
+      - tcitcl_network
+    restart: unless-stopped
+
+  tcitcl_postgres:
+    image: postgres:18
+    container_name: tcitcl_postgres
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-tcitcl_db}
+      - POSTGRES_USER=${POSTGRES_USER:-tcitcl}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=tcitcl_postgres
+      - POSTGRES_PORT=5432
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - tcitcl_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  tcitcl_network:
+    driver: bridge
