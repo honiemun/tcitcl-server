@@ -6,7 +6,6 @@ RUN npm ci
 
 COPY . .
 
-# TO-DO: Switch to .env
 EXPOSE 3003
 
 CMD ["npx", "tsx", "src/server.ts"]

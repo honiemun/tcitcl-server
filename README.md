@@ -1,6 +1,6 @@
 # TCIT.cl Take-home Project API
 
-Simple RESTful API that allows for the listing, creation and deletion of Post elements. Using Node.js, Express, PostgreSQL, Zod and Docker. Created for TCIT.cl. Best used with its front-end sister project.
+Simple RESTful API that allows for the listing, creation and deletion of Post elements. Using Node.js, Express, PostgreSQL, Zod and Docker. Created for TCIT.cl. Best used with its [front-end sister project](https://github.com/honiemun/tcitcl-client).
 
 ## Endpoints
 
@@ -13,5 +13,7 @@ Simple RESTful API that allows for the listing, creation and deletion of Post el
     - Returns HTTP code `204` on a successful deletion, or `404` if the post ID does not exist.
 
 ## Usage
+
+Create an `.env` file based on the `.env.example`, including the Postgres user and password.
 
 This project uses Docker. To run the API and the Postgres database, run `docker compose build && docker compose up -d` on your terminal.
